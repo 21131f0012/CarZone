@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+from decouple import config
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,10 +21,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'ge043zcx!=osbt=qjan-29@4z#sv$zj0d0z*uzuxo$svo@fryw'
+SECRET_KEY = config( "SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG')
 
 ALLOWED_HOSTS = []
 
@@ -31,8 +32,10 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'contacts.apps.ContactsConfig',
     'cars.apps.CarsConfig',
     'pages.apps.PagesConfig',
+    'accounts.apps.AccountsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,7 +44,19 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'ckeditor',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
+    #provider
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.google',
+
 ]
+
+LOGIN_REDIRECT_URL = 'dashboard'
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -51,6 +66,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+     'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'Carzone.urls'
@@ -80,10 +96,11 @@ WSGI_APPLICATION = 'Carzone.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'carzone_db',
-        'USER': 'postgres',
-        'PASSWORD':'Admin',
-        'HOST':'localhost',
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD':config('DB_PASSWORD') ,
+        'HOST':config('DB_HOST'),
+        
     }
 }
 
@@ -132,3 +149,18 @@ STATICFILES_DIRS=[
 
 MEDIA_ROOT=os.path.join(BASE_DIR,"media")  # this is where our uploaded images
 MEDIA_URL='/media/'
+
+from django.contrib.messages import constants as messages
+
+MESSAGE_TAGS = {
+    messages.ERROR: "danger",
+    
+}
+
+SITE_ID = 1
+
+EMAIL_HOST=config('EMAIL_HOST')
+EMAIL_PORT=config('EMAIL_PORT')
+EMAIL_HOST_USER=config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD=config('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS=config('EMAIL_USE_TLS')
