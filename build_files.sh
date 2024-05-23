@@ -28,4 +28,3 @@ echo "Running migrations..."
 python3 manage.py migrate || { echo "migrations failed"; exit 1; }
 
 echo "build_files.sh completed successfully."
-
