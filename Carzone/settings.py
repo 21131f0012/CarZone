@@ -26,7 +26,7 @@ SECRET_KEY = config( "SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG')
 
-ALLOWED_HOSTS = ['.vercel.app','.now.sh']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -144,7 +144,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT=os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS=[
-    os.path.join(BASE_DIR,'Carzone/static'),
+    os.path.join(BASE_DIR,'Carzone/static','staticfiles'),
 ]
 
 MEDIA_ROOT=os.path.join(BASE_DIR,"media")  # this is where our uploaded images
