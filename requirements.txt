@@ -23,7 +23,8 @@ opencage==2.3.1
 phonenumbers==8.13.26
 pillow==10.2.0
 platformdirs==3.2.0
-
+psycopg2==2.9.6
+psycopg2-binary==2.9.9
 pycparser==2.22
 PyJWT==2.8.0
 python-decouple==3.8
@@ -38,4 +39,3 @@ tzdata==2023.3
 urllib3==1.26.14
 virtualenv==20.21.0
 xyzservices==2023.10.1
-psycopg2-binary==2.9.9
