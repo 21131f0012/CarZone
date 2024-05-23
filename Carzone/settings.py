@@ -144,7 +144,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT=os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS=[
-    os.path.join(BASE_DIR,'Carzone/static','staticfiles'),
+    os.path.join(BASE_DIR,'Carzone/static'),
 ]
 
 MEDIA_ROOT=os.path.join(BASE_DIR,"media")  # this is where our uploaded images
