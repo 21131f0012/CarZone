@@ -23,7 +23,7 @@ opencage==2.3.1
 phonenumbers==8.13.26
 pillow==10.2.0
 platformdirs==3.2.0
-psycopg2-binary==2.9.9
+psycopg2-binary==2.9.3
 pycparser==2.22
 PyJWT==2.8.0
 python-decouple==3.8
